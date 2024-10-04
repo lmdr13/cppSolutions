@@ -1,16 +1,17 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include <algorithm>
 using namespace std;
 int main()
 {
     int n;
     cin >> n;
-    vector < vector<char>> letters(n, vector<char>(n));
+    vector <string> letters(n);
     unordered_map <char,int> mp;
     for(int i = 0; i<n; i++){
-        for(int j =0; j < n; j++){
-            cin >> letters[i][j];
+        cin >> letters[i];
+        for(int j =0; j < letters[i].length(); j++){            
             mp[letters[i][j]]++;
         }
     }
@@ -20,13 +21,21 @@ int main()
         if (second > max) {
             max=second;
             count = 0;
-            popular_letters.push_back(first);
+            popular_letters.clear();
+            popular_letters.push_back(first);            
         }
         else if (max == second){
             count++;
             popular_letters.push_back(first);
         }
-        if(mp[popular_letters[popular_letters.size()-1]]<max) popular_letters.clear();
     }
-    if ()
+    int ans = 0;
+    for (string s : letters){
+        for (auto&a:popular_letters) {
+            if (s.find(a)!=-1){
+                ans++;
+            }            
+        }
+    }
+    n - ans < 0 ? cout << 0 : cout << n - ans;
 }
