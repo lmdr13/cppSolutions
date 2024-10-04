@@ -34,8 +34,9 @@ int main()
         for (auto&a:popular_letters) {
             if (s.find(a)!=-1){
                 ans++;
+                break;
             }            
         }
     }
-    n - ans < 0 ? cout << 0 : cout << n - ans;
+    cout << n-ans;
 }
