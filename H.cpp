@@ -2,11 +2,11 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-bool canPlace(int dist, int k, const vector<int>& vec) {
+bool check(int mid, int k, const vector<int> vec) {
     int count = 1;
     int last_placed = vec[0];
     for (int i = 1; i < vec.size(); i++) {
-        if (vec[i] - last_placed >= dist) {
+        if (vec[i] - last_placed >= mid) {
             count++;
             last_placed = vec[i];
         }
@@ -23,11 +23,11 @@ int main() {
     }
     sort(vec.begin(), vec.end());
     int left = 1;
-    int right = vec.back() - vec[0];
+    int right = vec.back();
     int ans = 0;
     while (left <= right) {
         int mid = left + (right - left) / 2;
-        if (canPlace(mid, k, vec)) {
+        if (check(mid, k, vec)) {
             ans = mid;
             left = mid + 1;
         } else {
